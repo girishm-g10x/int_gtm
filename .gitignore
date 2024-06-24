@@ -7,6 +7,6 @@
 # Except the int_gtm directory
 !int_gtm/
 
-# Additionally, ensure that everything inside int_gtm is not ignored
+# Ensure that everything inside int_gtm is not ignored
 int_gtm/*
 !int_gtm/**/*

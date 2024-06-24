@@ -8,5 +8,4 @@
 !int_gtm/
 
 # Ensure that everything inside int_gtm is not ignored
-int_gtm/*
-!int_gtm/**/*
+!int_gtm/**

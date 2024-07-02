@@ -26,5 +26,5 @@ page-designer-components.md
 PULL_REQUEST_TEMPLATE.md
 README.md
 webpack.config.js
-
+node_modules/
 

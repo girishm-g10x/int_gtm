@@ -309,7 +309,15 @@ module.exports = function () {
         var productID = $(this).data('pid');
         var url = $(this).data('action');
         var uuid = $(this).data('uuid');
-        pushRemoveFromCartToDataLayer(productID, productName);
+        gtag('event', 'removeFromCart', {
+        // 'event_category': 'ecommerce',
+        // 'event_label': 'remove',
+        'items': [{
+            'id': productID,
+            'name': productName
+        }]
+    });
+
         var urlParams = {
             pid: productID,
             uuid: uuid

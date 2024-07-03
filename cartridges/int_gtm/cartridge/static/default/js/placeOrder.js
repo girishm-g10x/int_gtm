@@ -5,21 +5,27 @@ document.addEventListener('DOMContentLoaded', function () {
         // Extract grand total price
         var grandTotalPriceElement = document.querySelector('.grand-total-price');
         var grandTotalPrice = grandTotalPriceElement ? grandTotalPriceElement.textContent.trim() : '';
- 
-        // Extract shipping name
-        //var shippingNameElement = document.querySelector('.shipping-name');
-        //var shippingName = shippingNameElement ? shippingNameElement.textContent.trim() : '';
+        
+        // Extract product description
+        var productDescriptionElement = document.querySelector('.product-description');
+        var productDescription = productDescriptionElement ? productDescriptionElement.textContent.trim() : '';
+        
+        // Extract product ID
+        var productIdElement = document.querySelector('.product-id');
+        var productId = productIdElement ? productIdElement.textContent.trim() : '';
  
         // Push data to dataLayer
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             'event': 'submit_payment',
             'grandTotalPrice': grandTotalPrice,
-            //'shippingName': shippingName
+            'productDescription': productDescription,
+            'productId': productId
         });
  
         // Debugging
         console.log('Grand Total Price:', grandTotalPrice);
-        console.log('Shipping Name:', shippingName);
+        console.log('Product Description:', productDescription);
+        console.log('Product ID:', productId);
     });
 });

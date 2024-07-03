@@ -2,7 +2,7 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
         assets.addCss('/css/cart.css');
-        asset.addJS('/js/dataLayerUtil.js');
+        assets.addJs('/js/dataLayerUtil.js');
     </isscript>
 
     <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">

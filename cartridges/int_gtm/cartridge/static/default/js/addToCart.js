@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var priceElement = document.querySelector('.prices');
             var productPriceText = priceElement ? priceElement.textContent.trim() : '';
-            var regex = /£[\d,]+\.\d{2}/; // Matches a price format starting with £, followed by numbers with commas and decimals
+            var regex = /£[\d,]+\.\d{2}/; 
             var match = productPriceText.match(regex);
-            var productPrice = match ? match[0] : ''; // Extracted numerical price
-            console.log(productPrice);
+            var productPrice = match ? match[0] : ''; 
             
             var productId = button.getAttribute('data-pid');
             

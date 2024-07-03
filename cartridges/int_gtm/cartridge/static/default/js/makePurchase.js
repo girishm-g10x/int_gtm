@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var productNames = [];
             for (var i = 0; i < productNameElements.length; i++) {
                 var productName = productNameElements[i].querySelector('span').textContent.trim();
-                console.log(productName);
                 productNames.push(productName);
             }
             var purchaseData = {
@@ -34,11 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 'productNames':purchaseData.products
 
             });
-
-            // Debugging
-            console.log('Grand Total Price:', grandTotalPrice);
- 
-
         });
     });
 });

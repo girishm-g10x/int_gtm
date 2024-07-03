@@ -1,6 +1,5 @@
 window.dataLayer = window.dataLayer || [];
-console.log("test");
- 
+
 document.addEventListener('DOMContentLoaded', function () {
     var productLinks = document.querySelectorAll('.pdp-link > a');
  

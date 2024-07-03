@@ -2,7 +2,6 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
         assets.addJs('/js/productDetailPage.js');
-        assets.addJs('/js/productDetailName.js');
     </isscript>
 <isinclude template="/components/modules" sf-toolkit="off" />
  

@@ -23,9 +23,5 @@ document.addEventListener('DOMContentLoaded', function () {
             'productId': productId
         });
  
-        // Debugging
-        console.log('Grand Total Price:', grandTotalPrice);
-        console.log('Product Description:', productDescription);
-        console.log('Product ID:', productId);
     });
 });

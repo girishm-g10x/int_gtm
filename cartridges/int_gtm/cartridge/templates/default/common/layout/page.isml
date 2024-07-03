@@ -1,8 +1,8 @@
 <iscontent type="text/html" charset="UTF-8" compact="true"/>
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
-        assets.addJs('/js/productDetailPage.js');
-        assets.addJs('/js/productDetailsName.js');
+        <iscomment> assets.addJs('/js/productDetailPage.js'); </iscomment>
+        assets.addJs('/js/PDPpage.js');
     </isscript>
 <isinclude template="/components/modules" sf-toolkit="off" />
 

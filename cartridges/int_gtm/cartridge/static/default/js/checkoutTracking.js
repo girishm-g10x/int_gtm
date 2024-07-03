@@ -1,29 +1,39 @@
 window.dataLayer = window.dataLayer || [];
- 
-document.addEventListener('DOMContentLoaded', function () {
-    var checkoutButtons = document.querySelectorAll('.checkout-btn');
- 
-    checkoutButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-           
-            var cardElement = button.closest('.card.product-info');
- 
-            var variationAttributes = cardElement.querySelectorAll('.line-item-attributes');
-            var productName = '';
-            variationAttributes.forEach(function (attribute) {
-                if (textContent.includes('Product Name:')) {
-                    productName = textContent.split(': ')[1].trim();
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        function handleCheckoutEvent() {
+            var productNameElements = document.getElementsByClassName('line-item-name');
+            
+            for (var i = 0; i < (productNameElements.length/2); i++) {
+                var productName = productNameElements[i].querySelector('span').textContent.trim();
+                
+                var product = {
+                    name: productName 
+                };
+                
+                dataLayer.push({
+                    'event': 'checkout',
+                    'Product_Name': product.name
+                });
+            }
+        }
+
+        var observer = new MutationObserver(function (mutationsList) {
+            for (var mutation of mutationsList) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    
+                    var targetNode = mutation.target.querySelector('.container.data-checkout-stage');
+                    if (targetNode) {
+                        handleCheckoutEvent();
+                        break; 
+                    }
                 }
-            });
- 
-            var product = {
-                name: productName
-            };
- 
-            dataLayer.push({
-                'event': 'checkout',
-                'Productname': product.name
-            });
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
         });
     });
-});

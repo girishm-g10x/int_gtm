@@ -1,5 +1,5 @@
 node_modules/
-cartridges/*/cartridge/static/
+cartridges/app_storefront_base/cartridge/static/
 
 coverage/
 npm-debug.log

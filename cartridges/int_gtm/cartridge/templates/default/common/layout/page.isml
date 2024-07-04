@@ -6,7 +6,7 @@
 <html lang="${require('dw/util/Locale').getLocale(request.getLocale()).getLanguage()}">
     <head>
 
-        <isinclude template="/tagManager/tagHead" />
+        <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
         
         <!--[if gt IE 9]><!-->
             <isinclude sf-toolkit="off" template="/common/scripts" />
@@ -21,7 +21,7 @@
     
     <body>
 
-        <isinclude template="/tagManager/tagBody" />
+        <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>
 
         ${dw.system.HookMgr.callHook('app.template.beforeHeader', 'beforeHeader', pdict) || ''}
 

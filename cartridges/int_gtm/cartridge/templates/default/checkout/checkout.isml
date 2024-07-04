@@ -5,7 +5,7 @@
     <!----------------------------------------------------------------------------------->
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
-        assets.addJs('/js/makePurchase.js');
+        assets.addJs('/js/TagManager.js');
         assets.addJs('/js/checkout.js');
         assets.addCss('/css/checkout/checkout.css');
     </isscript>

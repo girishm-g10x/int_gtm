@@ -13,8 +13,11 @@
             <link rel="canonical" href="${pdict.canonicalUrl}"/>
         </isif>
         <isactivedatahead/>
+        <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>        
         <isinclude template="/components/schema" />
         <isinclude template="/tagManager/tagHead" />
+     
+        
     </head>
     <body>
         ${dw.system.HookMgr.callHook('app.template.beforeHeader', 'beforeHeader', pdict) || ''}
@@ -41,6 +44,7 @@
         ${dw.system.HookMgr.callHook('app.template.afterFooter', 'afterFooter', pdict) || ''}
         <isinclude url="${URLUtils.url('ConsentTracking-Check')}"/>
         <isinclude template="/tagManager/tagBody" />
-
+        <isinclude url="${URLUtils.url()}"/>
+        <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
     </body>
 </html>

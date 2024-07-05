@@ -4,7 +4,6 @@
         var assets = require('*/cartridge/scripts/assets');
         assets.addJs('/js/productDetail.js');
         assets.addCss('/css/product/detail.css');
-        assets.addJs('/js/addToCart.js');
     </isscript>
 
     <isset name="product" value="${pdict.product}" scope="page" />

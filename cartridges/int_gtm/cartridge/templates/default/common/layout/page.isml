@@ -11,7 +11,6 @@
     <!--[if gt IE 9]><!-->
     <isinclude sf-toolkit="off" template="/common/scripts" />
     <!--<![endif]-->
-    <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
     <isinclude template="/common/htmlHead" />
     <isif condition="${pdict.canonicalUrl}">
         <link rel="canonical" href="${pdict.canonicalUrl}" />
@@ -22,6 +21,7 @@
 
 <body>
     <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>
+    
     ${dw.system.HookMgr.callHook('app.template.beforeHeader', 'beforeHeader', pdict) || ''}
 
     <div class="page" data-action="${pdict.action}" data-querystring="${pdict.queryString}">

@@ -15,7 +15,7 @@
             </div>
             <ul class="coupon-promotion-relationship">
                 <isloop items="${discount.relationship}" var="relatedPromotion">
-
+ 
                     <isif condition="${relatedPromotion.callOutMsg}">
                         <li>
                             <isprint value="${relatedPromotion.callOutMsg}" encoding="off" />
@@ -33,5 +33,5 @@
 </isloop>
 <isscript>
         var assets = require('*/cartridge/scripts/assets');
-        assets.addJs('/js/couponCheck.js');
+        assets.addJs('/js/TagManager.js');
 </isscript>

@@ -15,7 +15,6 @@
         <isactivedatahead/>
         <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>        
         <isinclude template="/components/schema" />
-        <isinclude template="/tagManager/tagHead" />
      
         
     </head>
@@ -43,8 +42,6 @@
         </iscomment>
         ${dw.system.HookMgr.callHook('app.template.afterFooter', 'afterFooter', pdict) || ''}
         <isinclude url="${URLUtils.url('ConsentTracking-Check')}"/>
-        <isinclude template="/tagManager/tagBody" />
-        <isinclude url="${URLUtils.url()}"/>
         <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
     </body>
 </html>

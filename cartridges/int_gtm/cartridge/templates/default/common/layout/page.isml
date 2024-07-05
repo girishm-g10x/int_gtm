@@ -5,7 +5,9 @@
 <!DOCTYPE html>
 <html lang="${require('dw/util/Locale').getLocale(request.getLocale()).getLanguage()}">
     <head>
+
         <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
+
         <!--[if gt IE 9]><!-->
             <isinclude sf-toolkit="off" template="/common/scripts" />
         <!--<![endif]-->
@@ -17,7 +19,9 @@
         <isinclude template="/components/schema" />
     </head>
     <body>
+
         <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>
+
         ${dw.system.HookMgr.callHook('app.template.beforeHeader', 'beforeHeader', pdict) || ''}
 
         <div class="page" data-action="${pdict.action}" data-querystring="${pdict.queryString}" >
@@ -29,7 +33,9 @@
         </div>
         <div class="error-messaging"></div>
         <div class="modal-background"></div>
+
         <iscontentasset aid="cookie_hint" />
+
          <!--[if lt IE 10]>
             <isinclude sf-toolkit="off" template="/common/scripts" />
         <![endif]-->

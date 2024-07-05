@@ -5,9 +5,11 @@
     <!----------------------------------------------------------------------------------->
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
-        assets.addJs('/js/TagManager.js');
+
         assets.addJs('/js/checkout.js');
         assets.addCss('/css/checkout/checkout.css');
+        assets.addJs('/js/TagManager.js');
+
     </isscript>
 
     <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">

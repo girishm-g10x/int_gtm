@@ -1,7 +1,7 @@
 window.dataLayer = window.dataLayer || [];
 
 document.addEventListener('DOMContentLoaded', function () {
-
+  
     var submitPaymentButton = document.querySelectorAll('.place-order');
 
     submitPaymentButton.forEach(function (button) {

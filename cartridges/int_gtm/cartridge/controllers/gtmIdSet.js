@@ -1,13 +1,13 @@
 'use strict';
 
 /**
- * @namespace gtmIdSet
+ * @namespace GtmIdSet
  * This is a controller to set the gtm id given from the BM
  */
 
 /**
- * gtmIdSet-SetBody : This end point is to set the body tag 
- * @name gtmIdSet-SetBody
+ * GtmIdSet-SetBody : This end point is to set the body tag 
+ * @name GtmIdSet-SetBody
  * @function
  * @param {renders} - isml
  */
@@ -24,8 +24,8 @@ server.get('SetBody', function (req, res, next) {
 });
 
 /**
- * gtmIdSet-SetHead : This end point is to set the Head tag 
- * @name gtmIdSet-SetHead
+ * GtmIdSet-SetHead : This end point is to set the Head tag 
+ * @name GtmIdSet-SetHead
  * @function
  * @param {renders} - isml
  */

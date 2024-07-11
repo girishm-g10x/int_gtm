@@ -10,7 +10,7 @@
         <!--<![endif]-->
         <isinclude template="/common/htmlHead" />
 
-        <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
+        <isinclude url="${URLUtils.url('GtmIdSet-SetHead')}"/>
 
         <isif condition="${pdict.canonicalUrl}" >
             <link rel="canonical" href="${pdict.canonicalUrl}"/>
@@ -48,6 +48,6 @@
         ${dw.system.HookMgr.callHook('app.template.afterFooter', 'afterFooter', pdict) || ''}
 
         <isinclude url="${URLUtils.url('ConsentTracking-Check')}"/>
-        <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>
+        <isinclude url="${URLUtils.url('GtmIdSet-SetBody')}"/>
     </body>
 </html>

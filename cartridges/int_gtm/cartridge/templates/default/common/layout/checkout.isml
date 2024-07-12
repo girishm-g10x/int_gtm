@@ -10,7 +10,7 @@
         <!--<![endif]-->
         <isinclude template="/common/htmlHead" />
 
-        <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
+        <isinclude url="${URLUtils.url('GtmIdSet-SetHead')}"/>
 
         <isif condition="${pdict.canonicalUrl}" >
             <link rel="canonical" href="${pdict.canonicalUrl}"/>
@@ -24,10 +24,6 @@
 
         <div class="page">
             <isinclude template="/components/header/pageHeaderNomenu" />
-
-        <div class="page" data-action="${pdict.action}" data-querystring="${pdict.queryString}" >
-            <isinclude template="/components/header/pageHeader" />
-
             <div role="main" id="maincontent">
                 <isreplace/>
             </div>
@@ -52,6 +48,6 @@
         ${dw.system.HookMgr.callHook('app.template.afterFooter', 'afterFooter', pdict) || ''}
 
         <isinclude url="${URLUtils.url('ConsentTracking-Check')}"/>
-        <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>
+        <isinclude url="${URLUtils.url('GtmIdSet-SetBody')}"/>
     </body>
 </html>

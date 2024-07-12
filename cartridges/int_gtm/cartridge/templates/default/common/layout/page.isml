@@ -1,4 +1,8 @@
-<iscontent type="text/html" charset="UTF-8" compact="true" />
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/TagManager.js');
+    </isscript>
 
 <isinclude template="/components/modules" sf-toolkit="off" />
 
@@ -6,7 +10,7 @@
 <html lang="${require('dw/util/Locale').getLocale(request.getLocale()).getLanguage()}">
 
 <head>
-    <isinclude url="${URLUtils.url('gtmIdSet-SetHead')}"/>
+    <isinclude url="${URLUtils.url('GtmIdSet-SetHead')}"/>
 
     <!--[if gt IE 9]><!-->
     <isinclude sf-toolkit="off" template="/common/scripts" />
@@ -20,7 +24,7 @@
 </head>
 
 <body>
-    <isinclude url="${URLUtils.url('gtmIdSet-SetBody')}"/>
+    <isinclude url="${URLUtils.url('GtmIdSet-SetBody')}"/>
     
     ${dw.system.HookMgr.callHook('app.template.beforeHeader', 'beforeHeader', pdict) || ''}
 

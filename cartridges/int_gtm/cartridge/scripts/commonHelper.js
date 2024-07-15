@@ -1,32 +1,43 @@
 'use strict';
 
-// /**
-//  * Creates an account model for the current customer
-//  * @param {Object} req - local instance of request object
-//  * @returns {Object} a plain object of the current customer's account
-//  */
-// function getAccountModel(req) {
-//     var AccountModel = require('*/cartridge/models/account');
-//     var AddressModel = require('*/cartridge/models/address');
-//     var orderHelpers = require('*/cartridge/scripts/order/orderHelpers');
+var collections = require('*/cartridge/scripts/util/collections');
 
-//     var preferredAddressModel;
+function getBasketDetails(basket) {
+    var result = {
+        error: false,
+        products: []
+    };
 
-//     if (!req.currentCustomer.profile) {
-//         return null;
-//     }
+    if (!basket || !basket.productLineItems) {
+        result.error = true;
+        return result;
+    }
 
-//     var orderModel = orderHelpers.getLastOrder(req);
+    var productLineItems = basket.productLineItems.iterator();
 
-//     if (req.currentCustomer.addressBook.preferredAddress) {
-//         preferredAddressModel = new AddressModel(req.currentCustomer.addressBook.preferredAddress);
-//     } else {
-//         preferredAddressModel = null;
-//     }
+    while (productLineItems.hasNext()) {
+        var item = productLineItems.next();
 
-//     return new AccountModel(req.currentCustomer, preferredAddressModel, orderModel);
-// }
+        if (item.product === null || !item.product.online) {
+            result.error = true;
+            continue;
+        }
+
+        var productDetails = {
+            id: item.product.ID,
+            name: item.product.name,
+            price: item.basePrice.value,
+            quantity: item.quantity.value,
+            proratedPrice: item.proratedPrice.value,
+
+        };
+
+        result.products.push(productDetails);
+    }
+
+    return result;
+}
 
 module.exports = {
-    // getAccountModel: getAccountModel
+    getBasketDetails: getBasketDetails
 };

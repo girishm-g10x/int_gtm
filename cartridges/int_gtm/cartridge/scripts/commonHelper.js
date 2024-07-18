@@ -27,8 +27,7 @@ function getBasketDetails(basket) {
             id: item.product.ID,
             name: item.product.name,
             price: item.basePrice.value,
-            quantity: item.quantity.value,
-            proratedPrice: item.proratedPrice.value,
+            quantity: item.quantity.value
 
         };
 

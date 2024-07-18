@@ -4,6 +4,7 @@
         <all-instances/>
         <development>
             <preference preference-id="GTMID">GTM-WJ3P3RLD</preference>
+            <preference preference-id="GTMEnable">true</preference>
         </development>
         <staging/>
         <production/>

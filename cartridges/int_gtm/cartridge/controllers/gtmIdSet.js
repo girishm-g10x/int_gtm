@@ -16,10 +16,13 @@ var server = require('server');
 server.get('SetBody', function (req, res, next) {
     var Site = require('dw/system/Site');
     var gtmContainerId = Site.current.getCustomPreferenceValue('GTMID') || '';
+    var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;
 
-    res.render('/tagManager/tagBody', {
-        id: gtmContainerId
-    });
+    if(gtmEnable){
+        res.render('/tagManager/tagBody', {
+            gtmId: gtmContainerId
+        });
+    }
     next();
 });
 
@@ -32,10 +35,13 @@ server.get('SetBody', function (req, res, next) {
 server.get('SetHead', function (req, res, next) {
     var Site = require('dw/system/Site');
     var gtmContainerId = Site.current.getCustomPreferenceValue('GTMID') || '';
+    var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;
 
-    res.render('/tagManager/tagHead', {
-        id: gtmContainerId
-    });
+    if(gtmEnable){
+        res.render('/tagManager/tagHead', {
+            gtmId: gtmContainerId
+        });
+    }
     next();
 });
 

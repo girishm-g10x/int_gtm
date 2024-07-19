@@ -14,10 +14,10 @@
 var server = require('server');
  
 server.get('SetBody', function (req, res, next) {
+
     var Site = require('dw/system/Site');
     var gtmContainerId = Site.current.getCustomPreferenceValue('GTMID') || '';
     var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;
- 
     if(gtmEnable){
         res.render('/tagManager/tagBody', {
             gtmId: gtmContainerId
@@ -33,10 +33,10 @@ server.get('SetBody', function (req, res, next) {
  * @param {renders} - isml
  */
 server.get('SetHead', function (req, res, next) {
+
     var Site = require('dw/system/Site');
     var gtmContainerId = Site.current.getCustomPreferenceValue('GTMID') || '';
     var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;
- 
     if(gtmEnable){
         res.render('/tagManager/tagHead', {
             gtmId: gtmContainerId

@@ -1,18 +1,11 @@
-<!-- customProductDetails.isml -->
-<!-- Hidden container to store product details -->
-<iscomment> <isif condition="${!empty pdict.productDetails}">
-    <isset name="productID" value="${pdict.productDetails.product_ID}" scope="page" />
-    <isset name="productName" value="${pdict.productDetails.product_Name}" scope="page" />
-    <isset name="productPrice" value="${pdict.productDetails.product_Price}" scope="page" />
-    <isset name="productRating" value="${pdict.productDetails.product_Rating}" scope="page"/>
-</isif> </iscomment>
- <iscomment> <h1>${pdict.productDetails.product_ID}</h1> </iscomment>
-<div id="productData"
+<isif condition="${pdict.productDetails}">
+    <div id="productData"
         data-product-id="${pdict.productDetails.product_ID}"
         data-product-name="${pdict.productDetails.product_Name}"
         data-product-price="${pdict.productDetails.product_Price}"
         data-product-rating="${pdict.productDetails.product_Rating}"
         style="display:none;">
-</div>
+    </div>
+</isif>
 
 <script src="${URLUtils.staticURL('/js/tagManager.js')}"></script>

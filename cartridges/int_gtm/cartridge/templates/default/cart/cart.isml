@@ -2,12 +2,14 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
         assets.addCss('/css/cart.css');
-        assets.addJs('/js/TagManager.js');
+        assets.addJs('/js/tagManager.js');
     </isscript>
  
     <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
         <isinclude template="reporting/reportingUrls" />
     </isif>
+    <h1>HAi</h1>
+    <isinclude template="cart/cartGtm" />
  
     <div class="cart-error-messaging cart-error">
         <isif condition="${pdict.valid.error && pdict.items.length !== 0}">

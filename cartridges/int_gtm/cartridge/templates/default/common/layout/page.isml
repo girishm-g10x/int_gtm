@@ -1,10 +1,7 @@
 <iscontent type="text/html" charset="UTF-8" compact="true"/>
     <isscript>
         var assets = require('*/cartridge/scripts/assets.js');
-<<<<<<< HEAD
-        <iscomment> assets.addJs('/js/TagManager.js'); </iscomment>
-=======
->>>>>>> feature/GTM
+        assets.addJs('/js/tagManager.js');
     </isscript>
 
 <isinclude template="/components/modules" sf-toolkit="off" />

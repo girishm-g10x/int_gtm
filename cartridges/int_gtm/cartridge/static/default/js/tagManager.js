@@ -1,7 +1,31 @@
 window.dataLayer = window.dataLayer || [];
-
+ 
 document.addEventListener('DOMContentLoaded', function () {
     
+    var submitCouponCliked = false;
+    
+    var couponElement = document.querySelectorAll('.promo-code-btn');
+    
+    couponElement.forEach(function (button) {
+        button.addEventListener('click', function () {
+            submitCouponCliked = true;
+        });
+    });
+
+    function getCouponDetails(){
+  
+        var couponCodeElement = document.querySelector('.coupon-promotion-relationship');
+
+        if(couponCodeElement){
+            var couponCode = couponCodeElement.textContent.trim();   
+            
+            dataLayer.push({
+                'event': 'couponcheck',
+                'couponid': couponCode
+              });
+        }
+      }
+
     function getProductDetails() {
         
         var productDataElement = document.getElementById('productData');
@@ -34,13 +58,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var observer = new MutationObserver(function (mutationsList) {
         for (var mutation of mutationsList) {
-            if (
-                mutation.type === 'childList' &&
-                mutation.addedNodes.length > 0
-            ) {
-                var targetNode =
-                    mutation.target.querySelectorAll('.product-wrapper');
-                if (targetNode) {
+          
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+              
+                var couponTargetNode = mutation.target.querySelectorAll('.coupon-applied');
+              
+                var pdpTargetNode = mutation.target.querySelectorAll('.product-wrapper');
+              
+                if (couponTargetNode) {
+                    if(submitCouponCliked){
+                        getCouponDetails();
+                        break;
+                    }
+                }
+                if (pdpTargetNode) {
                     getProductDetails();
                     break;
                 }

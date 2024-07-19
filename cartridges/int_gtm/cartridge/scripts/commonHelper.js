@@ -1,5 +1,9 @@
 'use strict';
+<<<<<<< HEAD
+
+=======
  
+>>>>>>> feature/GTM
 /**
  * Creates an account model for the current customer
  * @param {Object} req - local instance of request object
@@ -13,9 +17,18 @@ function recieveProductDetails(data) {
         product_Rating:data.rating
     }
     return productDetails;
+<<<<<<< HEAD
+
+}
+
+module.exports = {
+    recieveProductDetails: recieveProductDetails
+};
+=======
  
 }
  
 module.exports = {
     recieveProductDetails: recieveProductDetails
 };
+>>>>>>> feature/GTM

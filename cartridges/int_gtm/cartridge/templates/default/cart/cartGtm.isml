@@ -1,3 +1,3 @@
     <div id="gtmid" style="display:none;">
-        ${pdict.gtmID}
+        ${pdict.gtmEnable}
     </div>

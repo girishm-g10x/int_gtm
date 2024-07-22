@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Creates a Product Details Object For GTM 
+ * @param {Object} req - local instance of request object
+ * @returns {Object} a plain object of the product details
+ */
 function getBasketDetails(basket) {
 
     var collections = require('*/cartridge/scripts/util/collections');
@@ -39,9 +44,9 @@ function getBasketDetails(basket) {
 }
     
 /**
- * Creates an account model for the current customer
+ * Creates a Product Details Object For GTM 
  * @param {Object} req - local instance of request object
- * @returns {Object} a plain object of the current customer's account
+ * @returns {Object} a plain object of the product details
  */
 function recieveProductDetails(data) {
     var productDetails = {

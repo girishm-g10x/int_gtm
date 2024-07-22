@@ -8,7 +8,6 @@
     <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
         <isinclude template="reporting/reportingUrls" />
     </isif>
-    <h1>HAi</h1>
     <isinclude template="cart/cartGtm" />
  
     <div class="cart-error-messaging cart-error">

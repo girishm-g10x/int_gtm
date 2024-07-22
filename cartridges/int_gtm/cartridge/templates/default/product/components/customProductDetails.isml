@@ -7,5 +7,3 @@
         style="display:none;">
     </div>
 </isif>
-
-<iscomment> <script src="${URLUtils.staticURL('/js/tagManager.js')}"></script> </iscomment>

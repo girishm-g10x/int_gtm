@@ -7,6 +7,13 @@
 var server = require('server');
 var base = module.superModule;
 server.extend(base);
+
+/**
+ * Product-Show : This end point is to set Product Details for GTM
+ * @name Product-Show
+ * @function
+ * @param {renders} - isml
+ */
  
 server.append('Show', function (req, res, next) {
 

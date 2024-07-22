@@ -4,6 +4,13 @@ var server = require('server');
 var base = module.superModule;
 server.extend(base);
 
+/**
+ * Checkout-Begin : This end point is to set basketDetails for GTM
+ * @name Checkout-Begin
+ * @function
+ * @param {renders} - isml
+ */
+
 server.append('Begin', function (req, res, next) {
     var Site = require('dw/system/Site');
     var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;

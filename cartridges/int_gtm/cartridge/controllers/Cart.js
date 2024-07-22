@@ -4,12 +4,18 @@ var server = require('server');
 var base = module.superModule;
 server.extend(base);
 
+/**
+ * Cart-Show : This end point is to set GtmEnable to the isml
+ * @name Cart-Show
+ * @function
+ * @param {renders} - isml
+ */
+
 server.append('Show', function (req, res, next) {
     var Site = require('dw/system/Site');
     var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;
-    var gtmID = Site.current.getCustomPreferenceValue('GTMID') || '';
 
-    res.setViewData({ gtmEnable: gtmEnable, gtmID: gtmID });
+    res.setViewData({ gtmEnable: gtmEnable });
     next();
 });
 

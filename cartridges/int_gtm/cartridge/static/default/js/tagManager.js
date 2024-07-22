@@ -3,6 +3,7 @@ window.dataLayer = window.dataLayer || [];
 document.addEventListener('DOMContentLoaded', function () {
     
     var submitCouponCliked = false;
+    var checkoutButtonClickFlag = true;
     
     var couponElement = document.querySelectorAll('.promo-code-btn');
     
@@ -57,26 +58,48 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleCheckoutEvent() {
-        var productDataElement = document.getElementById('productData');
+
+        var productDataElement = document.getElementById('productBasketData');
+
         if (productDataElement) {
-            var products = JSON.parse(productDataElement.getAttribute('data-product-list'));
-            products.forEach(function (product) {
-                dataLayer.push({
-                    'event': 'checkout',
-                    'Product_ID': product.id,
-                    'Product_Name': product.name,
-                    'Product_Price': product.price,
-                    'Product_Quantity': product.quantity
+            var productsAttributes = productDataElement.getAttribute('data-product-list');
+            
+            var productList = JSON.parse(productsAttributes);
+
+            if (Array.isArray(productList)) {
+                productList.forEach(function (product) {
+
+                    window.dataLayer.push({
+                        'event': 'checkout',
+                        'productid': product.id,
+                        'Productname': product.name,
+                        'price': product.price,
+                        'quantity' : product.quantity
+                        
+                    });
                 });
-            });
+            }
+
+            checkoutButtonClickFlag = false;
+            
         }
     }
+
+    var checkoutButtonClickElement = document.querySelectorAll('.checkout-btn '); 
+
+    checkoutButtonClickElement.forEach(function (button) {
+        button.addEventListener('click', function () {
+
+            checkoutButtonClickFlag = true;
+            
+        });
+    });
 
     var makePurchaseButton = document.querySelectorAll('.place-order');
 
     makePurchaseButton.forEach(function (button) {
         button.addEventListener('click', function () {
-            var productDataElement = document.getElementById('productData');
+            var productDataElement = document.getElementById('productBasketData');
             var productListAttribute = productDataElement.getAttribute('data-product-list');
             if(productDataElement){
             try {
@@ -111,21 +134,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 var couponTargetNode = mutation.target.querySelectorAll('.coupon-applied');
               
                 var pdpTargetNode = mutation.target.querySelectorAll('.product-wrapper');
+                
+                var checkoutTargetNode = mutation.target.querySelectorAll('.data-checkout-stage');
               
-                if (couponTargetNode) {
+                if (couponTargetNode.length) {
                     if(submitCouponCliked){
                         getCouponDetails();
+                        couponTargetNode = null;
                         break;
                     }
                 }
-                if (pdpTargetNode) {
+                if (pdpTargetNode.length) { 
                     getProductDetails();
+                    pdpTargetNode = null;
                     break;
                 }
-                var checkoutTargetNode = mutation.target.querySelector('.container.data-checkout-stage');
                 if (checkoutTargetNode) {
-                    handleCheckoutEvent();
-                    break;
+                    if(checkoutButtonClickFlag){
+                        handleCheckoutEvent();
+                        checkoutTargetNode = null;
+                        break;
+                    }
                 }
             }
         }

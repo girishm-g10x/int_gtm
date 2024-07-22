@@ -1,8 +1,9 @@
 'use strict';
 
-var collections = require('*/cartridge/scripts/util/collections');
-
 function getBasketDetails(basket) {
+
+    var collections = require('*/cartridge/scripts/util/collections');
+
     var result = {
         error: false,
         products: []
@@ -37,7 +38,6 @@ function getBasketDetails(basket) {
     return result;
 }
     
-
 /**
  * Creates an account model for the current customer
  * @param {Object} req - local instance of request object

@@ -8,4 +8,4 @@
     </div>
 </isif>
 
-<script src="${URLUtils.staticURL('/js/tagManager.js')}"></script>
+<iscomment> <script src="${URLUtils.staticURL('/js/tagManager.js')}"></script> </iscomment>

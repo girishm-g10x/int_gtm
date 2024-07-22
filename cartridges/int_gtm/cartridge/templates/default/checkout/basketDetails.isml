@@ -1,9 +1,6 @@
 <isif condition="${pdict.basketDetails.products}">
-    <div id="productData"
+    <div id="productBasketData"
         data-product-list="${JSON.stringify(pdict.basketDetails.products)}"
         style="display:none;">
     </div>
 </isif>
-
-
-

@@ -29,5 +29,3 @@ PULL_REQUEST_TEMPLATE.md
 README.md
 webpack.config.js
 launch.json
-tagManager
-.gitignore

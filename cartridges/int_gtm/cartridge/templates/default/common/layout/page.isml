@@ -51,5 +51,4 @@
     <isinclude url="${URLUtils.url('ConsentTracking-Check')}" />
 
 </body>
-
 </html>

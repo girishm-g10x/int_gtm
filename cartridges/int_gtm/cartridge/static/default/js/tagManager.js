@@ -2,6 +2,8 @@ window.dataLayer = window.dataLayer || [];
  
 document.addEventListener('DOMContentLoaded', function () {
     
+// Function to get coupon details
+
     var submitCouponCliked = false;
     var checkoutButtonClickFlag = true;
     
@@ -27,35 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
 
-    function getProductDetails() {
-        
-        var productDataElement = document.getElementById('productData');
-        if (productDataElement) {
-            var productId = productDataElement.getAttribute('data-product-id');
-            var productName =
-                productDataElement.getAttribute('data-product-name');
-            var productPrice =
-                productDataElement.getAttribute('data-product-price');
-            var productRating = productDataElement.getAttribute(
-                'data-product-rating'
-            );
-
-            var product = {
-                name: productName,
-                id: productId,
-                price: productPrice,
-                rating: productRating
-            };
-
-            dataLayer.push({
-                event: 'p-d-p-page',
-                Productname: product.name,
-                price: product.price,
-                productid: product.id,
-                Productrating: product.rating
-            });
-        }
-    }
+    // Function to handle checkout event click
 
     function handleCheckoutEvent() {
 
@@ -85,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Event listener to handle checkout button
     var checkoutButtonClickElement = document.querySelectorAll('.checkout-btn '); 
 
     checkoutButtonClickElement.forEach(function (button) {
@@ -95,31 +70,58 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Event listener for place order 
+    
     var makePurchaseButton = document.querySelectorAll('.place-order');
 
     makePurchaseButton.forEach(function (button) {
         button.addEventListener('click', function () {
-            var productDataElement = document.getElementById('productBasketData');
-            var productListAttribute = productDataElement.getAttribute('data-product-list');
-            if(productDataElement){
 
-                var productList = JSON.parse(productListAttribute);
+            setPurchaseConfFlag('true');
 
-                if (Array.isArray(productList)) {
-                    productList.forEach(function (product) {
-                        window.dataLayer.push({
-                            'event': 'make_purchase',
-                            'productid': product.id,
-                            'Productname': product.name,
-                            'price': product.price,
-                            'quantity' : product.quantity
-                            
-                        });
-                    });
-                }
-            }
         });
     });
+
+    function purchaseConfirm() {
+        var productDataElement = document.getElementById('orderProductData');
+        if (productDataElement) {
+            var productListAttribute = productDataElement.getAttribute('data-product-list');
+            var couponCodeAttribute = productDataElement.getAttribute('data-coupon-code');
+            var totalTaxAtrribute = productDataElement.getAttribute('data-total-tax');
+            var parsedProductListData = JSON.parse(productListAttribute);
+            var parsedCouponCodeData = JSON.parse(couponCodeAttribute);
+            var totalTax = JSON.parse(totalTaxAtrribute);
+    
+            if (parsedProductListData && Array.isArray(parsedProductListData.items)) {
+                var productList = parsedProductListData.items;
+                var couponCode = parsedCouponCodeData;
+    
+                productList.forEach(function (product) {
+                    window.dataLayer.push({
+                        'event': 'purchase',
+                        'productid': product.id,
+                        'Productname': product.productName,
+                        'brand': product.brand,
+                        'price': product.priceTotal.price, 
+                        'quantity': product.quantity,
+                        'couponid': couponCode,
+                        'totalTax': totalTax
+                    });
+                });
+            }
+    
+            setPurchaseConfFlag('false');
+        }
+    }
+    
+    
+    // Function to Set flag for purchase
+
+    function setPurchaseConfFlag(value) {
+        sessionStorage.setItem('purchaseFlag', value);
+    }
+
+    // Observer for observe changes in the current DOM
 
     var observer = new MutationObserver(function (mutationsList) {
         for (var mutation of mutationsList) {
@@ -131,6 +133,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 var pdpTargetNode = mutation.target.querySelectorAll('.product-wrapper');
                 
                 var checkoutTargetNode = mutation.target.querySelectorAll('.data-checkout-stage');
+
+                var purchaseTargetNode = mutation.target.querySelectorAll('.hero-confirmation');
               
                 if (couponTargetNode.length) {
                     if(submitCouponCliked){
@@ -144,10 +148,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     getProductDetails();
                     break;
                 }
-                if (checkoutTargetNode) {
+                if (checkoutTargetNode.length) {
                     if(checkoutButtonClickFlag){
                         handleCheckoutEvent();
                         checkoutTargetNode = null;
+                        break;
+                    }
+                }
+                if (purchaseTargetNode.length) {
+                    if(sessionStorage.getItem('purchaseFlag') === 'true'){
+                        purchaseConfirm();
                         break;
                     }
                 }
@@ -159,6 +169,8 @@ document.addEventListener('DOMContentLoaded', function () {
         childList: true,
         subtree: true
     });
+
+    // Event listener for Add to Cart button
 
     var addToCartButtons = document.querySelectorAll('.add-to-cart');
 
@@ -194,6 +206,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Function to get details on clicking remove from cart button
+
     var gtmElement = document.getElementById('gtmid');
     var gtmID = gtmElement ? gtmElement.textContent.trim() : '';
     
@@ -218,6 +232,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
+        // Event listener to handle remove from cart button
+
         var deleteConfirm = document.querySelectorAll('.cart-delete-confirmation-btn');
         deleteConfirm.forEach(function(button) {
             button.addEventListener('click', function() {
@@ -227,8 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         event: 'remove_from_cart',
                         Productname: product.name,
                         price: product.price,
-                        productid: product.id,
-                        gtmID: product.gtmID
+                        productid: product.id
                     });
 
                     flag = false;
@@ -238,9 +253,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
+    // Function to Set flag for view-item
+
     function setFlag(value) {
         sessionStorage.setItem('pdpFlag', value);
     }
+
+    // Function to get product details from PDP
 
     function getProductDetails() {
         var productDataElement = document.getElementById('productData');
@@ -259,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
                 
                 dataLayer.push({
-                    event: 'p-d-p-page',
+                    event: 'view_item',
                     Productname: product.name,
                     price: product.price,
                     productid: product.id,
@@ -271,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
+    // Function to set flag on PDP  click
     function setupClickListeners() {
         var pdpLinks = document.querySelectorAll('.pdp-link');
         pdpLinks.forEach(function (link) {

@@ -14,7 +14,8 @@ var gtmEnable = Site.current.getCustomPreferenceValue('GTMEnable') || false;
 function beforeHeader(pdict) {
     if(gtmEnable){
         ISML.renderTemplate('/tagManager/tagBody', { 
-            gtmId: gtmContainerId
+            gtmId: gtmContainerId,
+            gtmEnable: gtmEnable
         });
     }
 }

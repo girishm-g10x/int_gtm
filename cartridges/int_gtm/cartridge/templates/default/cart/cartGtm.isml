@@ -1,3 +1,0 @@
-    <div id="gtmid" style="display:none;">
-        ${pdict.gtmEnable}
-    </div>

@@ -208,48 +208,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to get details on clicking remove from cart button
 
-    var gtmElement = document.getElementById('gtmid');
+    var gtmElement = document.getElementById('gtmEnable');
     var gtmID = gtmElement ? gtmElement.textContent.trim() : '';
     
     if (gtmID) {
-        var flag = false;
-        var product = {};
-
-        var removeButtons = document.querySelectorAll('.remove-product');
-        removeButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                var productId = this.getAttribute('data-product-id');
-                var productName = this.getAttribute('data-product-name');
-                var productPrice = this.getAttribute('data-product-price');
-
-                product = {
-                    id: productId,
-                    name: productName,
-                    price: productPrice
-                };
-
-                flag = true;
-            });
+        var removeFromCartflag = false;
+        var productDetails = {};
+ 
+        $('body').on('click', '.remove-product', function () {
+            var $ele = $(this);
+            var productId = $ele.attr('data-product-id');
+            var productName = $ele.attr('data-product-name');
+            var productPrice = $ele.attr('data-product-price');
+       
+            productDetails = {
+                id: productId,
+                name: productName,
+                price: productPrice
+            };
+       
+            removeFromCartflag = true;
         });
-
+ 
         // Event listener to handle remove from cart button
-
-        var deleteConfirm = document.querySelectorAll('.cart-delete-confirmation-btn');
-        deleteConfirm.forEach(function(button) {
-            button.addEventListener('click', function() {
-                if (flag && product.id) {
-                    
-                    dataLayer.push({
-                        event: 'remove_from_cart',
-                        Productname: product.name,
-                        price: product.price,
-                        productid: product.id
-                    });
-
-                    flag = false;
-                    product = {};
-                }
-            });
+ 
+        $('body').on('click', '.cart-delete-confirmation-btn', function () {
+            if (removeFromCartflag && productDetails.id) {
+                dataLayer.push({
+                    event: 'remove_from_cart',
+                    Productname: productDetails.name,
+                    price: productDetails.price,
+                    productid: productDetails.id
+                });
+       
+                removeFromCartflag = false;
+                productDetails = {};
+            }
         });
     }
     

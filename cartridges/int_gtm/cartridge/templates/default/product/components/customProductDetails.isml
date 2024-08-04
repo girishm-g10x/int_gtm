@@ -1,0 +1,9 @@
+<isif condition="${pdict.productDetails}">
+    <div id="productData"
+        data-product-id="${pdict.productDetails.product_ID}"
+        data-product-name="${pdict.productDetails.product_Name}"
+        data-product-price="${pdict.productDetails.product_Price}"
+        data-product-rating="${pdict.productDetails.product_Rating}"
+        style="display:none;">
+    </div>
+</isif>

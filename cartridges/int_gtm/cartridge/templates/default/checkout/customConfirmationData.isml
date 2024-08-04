@@ -1,0 +1,8 @@
+<isif condition="${pdict.order.items}">
+    <div id="orderProductData"
+        data-product-list="${JSON.stringify(pdict.order.items)}"
+        data-coupon-code="${JSON.stringify(pdict.order.totals.discounts[0].couponCode)}"
+        data-total-tax="${JSON.stringify(pdict.order.totals.totalTax)}"
+        style="display:none;">
+    </div>
+</isif>
